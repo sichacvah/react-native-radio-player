@@ -48,7 +48,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public static void start(String URL) {
+    public void start(String URL) {
         if (exoPlayer != null) {
             exoPlayer.stop();
         }
@@ -78,7 +78,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public static void stop() {
+    public void stop() {
         if (exoPlayer != null) {
             exoPlayer.stop();
             WritableMap params = Arguments.createMap();
@@ -87,7 +87,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public static void setVolume(float volume) {
+    public void setVolume(float volume) {
         if (exoPlayer != null) {
             exoPlayer.sendMessage(audioRenderer, MediaCodecAudioTrackRenderer.MSG_SET_VOLUME, volume);
             WritableMap params = Arguments.createMap();
