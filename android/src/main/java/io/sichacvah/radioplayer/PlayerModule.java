@@ -91,7 +91,8 @@ public class PlayerModule extends ReactContextBaseJavaModule {
         if (exoPlayer != null) {
             exoPlayer.sendMessage(audioRenderer, MediaCodecAudioTrackRenderer.MSG_SET_VOLUME, volume);
             WritableMap params = Arguments.createMap();
-            params.putFloat("volume", volume);
+            double dVolume = (double) volume;
+            params.putDouble("volume", dVolume);
             sendEvent("volume_changed", params);
         }
     }
