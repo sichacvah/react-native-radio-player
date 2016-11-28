@@ -1,0 +1,24 @@
+{
+  "name": "react-native-radio-player",
+  "version": "1.0.0",
+  "description": "React native media player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sichacvah/react-native-radio-player.git"
+  },
+  "keywords": [
+    "React",
+    "native",
+    "Android"
+  ],
+  "author": "Sergey Kurochkin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sichacvah/react-native-radio-player/issues"
+  },
+  "homepage": "https://github.com/sichacvah/react-native-radio-player#readme"
+}
