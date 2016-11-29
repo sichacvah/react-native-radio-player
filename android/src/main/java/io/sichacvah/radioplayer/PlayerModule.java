@@ -50,11 +50,10 @@ public class PlayerModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void startPlayerService(String URL) {
-        Intent serviceIntent = new Intent(getReactApplicationContext(), NotificationService.class);
-
+        Intent serviceIntent = new Intent(mContext, NotificationService.class);
         serviceIntent.putExtra("RADIO_PATH", URL);
         serviceIntent.setAction("STARTFOREGROUND_ACTION");
-        getReactApplicationContext().startService(serviceIntent);
+        mContext.startService(serviceIntent);
     }
 
     @ReactMethod
@@ -72,7 +71,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
         exoPlayer.addListener(new ExoPlayer.Listener() {
             @Override
             public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                if (playbackState == 4) {
+                if (playbackState == 4) 
                     WritableMap params = Arguments.createMap();
                     sendEvent("start", params);
                 }
