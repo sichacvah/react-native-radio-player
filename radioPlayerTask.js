@@ -1,4 +1,4 @@
-import Player from './player'
+import RadioPlayer from './player'
 module.exports = async ({radioPath, action}) => {
   switch(action) {
       case "STARTFOREGROUND_ACTION":
