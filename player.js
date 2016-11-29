@@ -9,7 +9,6 @@ let PlayerModule = NativeModules.PlayerModule;
 class Player {
     constructor() {
         this.isPause = false;
-        this.toggle = this.toggle.bind(this)
         this.start = this.start.bind(this)
         this.stop = this.stop.bind(this)
         this.setVolume = this.setVolume.bind(this)
