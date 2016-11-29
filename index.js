@@ -62,5 +62,5 @@ class Player {
     }
 }
 
-AppRegistry.registerHeadlessTask('radioPlayerTask', () => require('radioPlayerTask'));
+AppRegistry.registerHeadlessTask('radioPlayerTask', () => require('./radioPlayerTask'));
 export default (new Player());
