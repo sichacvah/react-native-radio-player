@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
+import android.content.Intent;
 import android.os.IBinder;
 import android.app.Service;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+import javax.annotation.Nullable;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ import com.facebook.react.jstasks.HeadlessJsTaskConfig;
 import com.facebook.react.jstasks.HeadlessJsTaskContext;
 import com.facebook.react.HeadlessJsTaskService;
 import com.facebook.react.bridge.Arguments;
-
+import com.facebook.react.bridge.WritableMap;
 
 public class NotificationService extends HeadlessJsTaskService {
 
@@ -40,7 +42,7 @@ public class NotificationService extends HeadlessJsTaskService {
         RemoteViews views = new RemoteViews(getPackageName(),
             R.layout.status_bar);
 
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this);
         notificationIntent.setAction(MAIN_ACTION);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -83,7 +85,7 @@ public class NotificationService extends HeadlessJsTaskService {
         status.flags = Notification.FLAG_ONGOING_EVENT;
         status.icon = R.drawable.radio;
         status.contentIntent = pendingIntent;
-        startForeground(FOREGROUND_SERVICE);
+        startForeground(FOREGROUND_SERVICE, status);
     }
 
 
