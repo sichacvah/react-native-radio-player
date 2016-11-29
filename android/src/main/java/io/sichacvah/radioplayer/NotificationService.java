@@ -17,7 +17,6 @@ import javax.annotation.Nullable;
 
 import java.util.ArrayList;
 
-import io.github.nikhilbhutani.analyzer.DataAnalyzer;
 import com.facebook.react.jstasks.HeadlessJsTaskEventListener;
 import com.facebook.react.jstasks.HeadlessJsTaskConfig;
 import com.facebook.react.jstasks.HeadlessJsTaskContext;
@@ -38,11 +37,11 @@ public class NotificationService extends HeadlessJsTaskService {
     private static final int FOREGROUND_SERVICE = 101;
     private static final String TASK_KEY = "radioPlayerTask";
 
-    private void showNotification(int pos) {
+    private void showNotification(int pos, String mClass) {
         RemoteViews views = new RemoteViews(getPackageName(),
             R.layout.status_bar);
 
-        Intent notificationIntent = new Intent(this);
+        Intent notificationIntent = new Intent(this, mClass);
         notificationIntent.setAction(MAIN_ACTION);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -106,16 +105,17 @@ public class NotificationService extends HeadlessJsTaskService {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         HeadlessJsTaskConfig taskConfig = getTaskConfig(intent);
+        String mClass = intent.getStringExtra("MainActivityClass");
         if (taskConfig != null) {
             if (intent.getAction().equals(STARTFOREGROUND_ACTION)) {
-                showNotification(0);
+                showNotification(0, mClass);
                 isPause = false;
             } else if (intent.getAction().equals(PLAY_ACTION)) {
                 if (!isPause) {
-                    showNotification(2);
+                    showNotification(2, mClass);
                     isPause = true;
                 } else {
-                    showNotification(1);
+                    showNotification(1, mClass);
                     isPause = false;
                 }
             } else if (intent.getAction().equals(STOPFOREGROUND_ACTION)) {
