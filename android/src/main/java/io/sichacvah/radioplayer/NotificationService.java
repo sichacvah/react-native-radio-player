@@ -30,7 +30,7 @@ public class NotificationService extends HeadlessJsTaskService {
     public static Context context;
     Notification status;
     boolean isPause = true;
-    private static final String MAIN_ACTION = "MAIN_ACTION";
+    private static final String MAIN_ACTION = "radioplayer.ACTION.MAIN_ACTION";
     private static final String PLAY_ACTION = "PLAY_ACTION";
     private static final String PAUSE_ACTION = "PAUSE_ACTION";
     private static final String STARTFOREGROUND_ACTION = "STARTFOREGROUND_ACTION";
@@ -42,7 +42,7 @@ public class NotificationService extends HeadlessJsTaskService {
         RemoteViews views = new RemoteViews(getPackageName(),
             R.layout.status_bar);
 
-        Intent notificationIntent = new Intent("radioplayer.MAIN_ACTION");
+        Intent notificationIntent = new Intent("io.sichacvah.radioplayer.mainIntent");
         notificationIntent.setAction(MAIN_ACTION);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
