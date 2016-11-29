@@ -48,6 +48,13 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void startPlayerService() {
+        Intent serviceIntent = new Intent(mContext, NotificationService.class);
+        serviceIntent.setAction("STARTFOREGROUND_ACTION");
+        startService(serviceIntent);
+    }
+
+    @ReactMethod
     public void start(String URL) {
         if (exoPlayer != null) {
             exoPlayer.stop();
