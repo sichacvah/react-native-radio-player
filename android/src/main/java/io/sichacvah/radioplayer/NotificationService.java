@@ -89,7 +89,6 @@ public class NotificationService extends HeadlessJsTaskService {
 
     @Override
     protected @Nullable HeadlessJsTaskConfig getTaskConfig(Intent intent) {
-        Bundler extras = intent.getExtras
         String radioPath = intent.getExtras().getString("RADIO_PATH");
         WritableMap params = Arguments.createMap();
         params.putString("radioPath", radioPath);
