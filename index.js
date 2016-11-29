@@ -17,7 +17,7 @@ class Player {
         this.removeEventListener = this.removeEventListener.bind(this)
     }
 
-    start(url) {
+    start(url = "http://lin3.ash.fast-serv.com:6026/stream_96") {
         PlayerModule.start(url)
         this.isPause = false;
     }
