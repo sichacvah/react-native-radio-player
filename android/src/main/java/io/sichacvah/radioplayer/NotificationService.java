@@ -94,7 +94,15 @@ public class NotificationService extends HeadlessJsTaskService {
         String radioPath = intent.getStringExtra("RADIO_PATH");
         WritableMap params = Arguments.createMap();
         params.putString("radioPath", radioPath);
-        params.putString("action", intent.getAction());
+        String action = intent.getAction();
+        if (intent.getAction().equals(PLAY_ACTION)) {
+            if (!isPause) {
+                action = "PLAY";
+            } else {
+                action = "PAUSE";
+            }
+        }
+        params.putString("action", action);
         return new HeadlessJsTaskConfig(
             TASK_KEY,
             params,
