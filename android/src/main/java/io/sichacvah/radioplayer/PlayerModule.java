@@ -62,7 +62,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startPlayerService() {
         Intent serviceIntent = new Intent(getMainActivityClass(), NotificationService.class);
-        serviceIntent.putExtra("MainActivityClass", getMainActivityClass());
+        // serviceIntent.putExtra("MainActivityClass", getMainActivityClass());
         serviceIntent.setAction("STARTFOREGROUND_ACTION");
         startService(serviceIntent);
     }

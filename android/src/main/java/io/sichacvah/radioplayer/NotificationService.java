@@ -23,6 +23,7 @@ import com.facebook.react.jstasks.HeadlessJsTaskContext;
 import com.facebook.react.HeadlessJsTaskService;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.ReactApplicationContext;
 
 public class NotificationService extends HeadlessJsTaskService {
 
@@ -37,11 +38,12 @@ public class NotificationService extends HeadlessJsTaskService {
     private static final int FOREGROUND_SERVICE = 101;
     private static final String TASK_KEY = "radioPlayerTask";
 
-    private void showNotification(int pos, String mClass) {
+    private void showNotification(int pos) {
         RemoteViews views = new RemoteViews(getPackageName(),
             R.layout.status_bar);
 
-        Intent notificationIntent = new Intent(this, mClass);
+        ReactApplicationContext reactContext = getReactApplicationContext();
+        Intent notificationIntent = new Intent(this, reactContext);
         notificationIntent.setAction(MAIN_ACTION);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -105,17 +107,16 @@ public class NotificationService extends HeadlessJsTaskService {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         HeadlessJsTaskConfig taskConfig = getTaskConfig(intent);
-        String mClass = intent.getStringExtra("MainActivityClass");
         if (taskConfig != null) {
             if (intent.getAction().equals(STARTFOREGROUND_ACTION)) {
-                showNotification(0, mClass);
+                showNotification(0);
                 isPause = false;
             } else if (intent.getAction().equals(PLAY_ACTION)) {
                 if (!isPause) {
-                    showNotification(2, mClass);
+                    showNotification(2);
                     isPause = true;
                 } else {
-                    showNotification(1, mClass);
+                    showNotification(1);
                     isPause = false;
                 }
             } else if (intent.getAction().equals(STOPFOREGROUND_ACTION)) {
