@@ -1,4 +1,3 @@
 import Player from './player'
-
-AppRegistry.registerHeadlessTask('radioPlayerTask', () => require('./radioPlayerTask'));
-export default Player
+import radioPlayerTask from './radioPlayerTask'
+export default { Player, radioPlayerTask }

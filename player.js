@@ -1,7 +1,7 @@
 import { 
     DeviceEventEmitter,
     NativeModules,
-    AppRegistry
+    
 } from 'react-native'
 
 let PlayerModule = NativeModules.PlayerModule;
