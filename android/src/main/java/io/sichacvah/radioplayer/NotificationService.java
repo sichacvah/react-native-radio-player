@@ -105,6 +105,7 @@ public class NotificationService extends HeadlessJsTaskService {
 
     @Override
     public void onHeadlessJsTaskFinish(int taskId) { }
+    
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -128,5 +129,6 @@ public class NotificationService extends HeadlessJsTaskService {
             startTask(taskConfig);
             return START_STICKY;
         }
+        return START_NOT_STICKY;
     }
 }
