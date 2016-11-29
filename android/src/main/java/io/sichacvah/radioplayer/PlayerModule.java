@@ -71,7 +71,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
         exoPlayer.addListener(new ExoPlayer.Listener() {
             @Override
             public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                if (playbackState == 4) 
+                if (playbackState == 4) {
                     WritableMap params = Arguments.createMap();
                     sendEvent("start", params);
                 }
