@@ -52,7 +52,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     public void startPlayerService() {
         Intent serviceIntent = new Intent(getReactApplicationContext(), NotificationService.class);
         serviceIntent.setAction("STARTFOREGROUND_ACTION");
-        startService(serviceIntent);
+        getReactApplicationContext().startService(serviceIntent);
     }
 
     @ReactMethod
