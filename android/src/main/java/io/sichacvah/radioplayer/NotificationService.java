@@ -38,11 +38,24 @@ public class NotificationService extends HeadlessJsTaskService {
     private static final int FOREGROUND_SERVICE = 101;
     private static final String TASK_KEY = "radioPlayerTask";
 
+    public Class getMainActivityClass() {
+        String packageName = context.getPackageName();
+        Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        String className = launchIntent.getComponent().getClassName();
+        try {
+            return Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private void showNotification(int pos) {
         RemoteViews views = new RemoteViews(getPackageName(),
             R.layout.status_bar);
 
-        Intent notificationIntent = new Intent("io.sichacvah.radioplayer.mainIntent");
+        Intent notificationIntent = new Intent(this, getMainActivityClass());
+        
         notificationIntent.setAction(MAIN_ACTION);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -117,6 +130,7 @@ public class NotificationService extends HeadlessJsTaskService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        context = getApplicationContext();
         HeadlessJsTaskConfig taskConfig = getTaskConfig(intent);
         if (taskConfig != null) {
             if (intent.getAction().equals(STARTFOREGROUND_ACTION)) {
