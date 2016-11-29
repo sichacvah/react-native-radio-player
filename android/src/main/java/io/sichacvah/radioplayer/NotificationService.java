@@ -97,9 +97,9 @@ public class NotificationService extends HeadlessJsTaskService {
         String action = intent.getAction();
         if (intent.getAction().equals(PLAY_ACTION)) {
             if (!isPause) {
-                action = "PLAY";
-            } else {
                 action = "PAUSE";
+            } else {
+                action = "PLAY";
             }
         }
         params.putString("action", action);

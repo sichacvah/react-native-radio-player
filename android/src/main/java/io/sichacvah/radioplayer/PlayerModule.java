@@ -63,7 +63,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
         }
 
         Uri URI = Uri.parse(URL);
-        FrameworkSampleSource sampleSource = new FrameworkSampleSource(this.mContext, URI, null);
+        FrameworkSampleSource sampleSource = new FrameworkSampleSource(mContext, URI, null);
         audioRenderer = new MediaCodecAudioTrackRenderer(sampleSource, null, true);
         exoPlayer = ExoPlayer.Factory.newInstance(1);
         exoPlayer.prepare(audioRenderer);
