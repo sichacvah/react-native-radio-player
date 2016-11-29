@@ -96,6 +96,15 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void stopPlayerService() {
+        stop();
+        Intent serviceIntent = new Intent(mContext, NotificationService.class);
+        serviceIntent.putExtra("RADIO_PATH", URL);
+        serviceIntent.setAction("PLAY_ACTION");
+        mContext.startService(serviceIntent);
+    }
+
+    @ReactMethod
     public void setVolume(float volume) {
         if (exoPlayer != null) {
             exoPlayer.sendMessage(audioRenderer, MediaCodecAudioTrackRenderer.MSG_SET_VOLUME, volume);
