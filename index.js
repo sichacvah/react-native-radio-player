@@ -35,6 +35,10 @@ class Player {
         }
     }
 
+    startPlayerService(url = "http://lin3.ash.fast-serv.com:6026/stream_96") {
+        PlayerModule.startPlayerService(url);
+    }
+
     setVolume(volume = 0) {
         PlayerModule.setVolume(volume)
     }
