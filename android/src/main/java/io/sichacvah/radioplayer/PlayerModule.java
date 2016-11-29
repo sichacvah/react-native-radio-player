@@ -99,7 +99,6 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     public void stopPlayerService() {
         stop();
         Intent serviceIntent = new Intent(mContext, NotificationService.class);
-        serviceIntent.putExtra("RADIO_PATH", URL);
         serviceIntent.setAction("PLAY_ACTION");
         mContext.startService(serviceIntent);
     }
