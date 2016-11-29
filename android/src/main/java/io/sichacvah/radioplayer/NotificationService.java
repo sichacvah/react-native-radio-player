@@ -42,8 +42,7 @@ public class NotificationService extends HeadlessJsTaskService {
         RemoteViews views = new RemoteViews(getPackageName(),
             R.layout.status_bar);
 
-        ReactApplicationContext reactContext = getReactApplicationContext();
-        Intent notificationIntent = new Intent(this, reactContext);
+        Intent notificationIntent = new Intent("radioplayer.MAIN_ACTION");
         notificationIntent.setAction(MAIN_ACTION);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
             | Intent.FLAG_ACTIVITY_CLEAR_TASK);

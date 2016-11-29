@@ -37,17 +37,6 @@ public class PlayerModule extends ReactContextBaseJavaModule {
         this.mContext = reactContext;
     }
 
-    public Class getMainActivityClass() {
-        String packageName = mContext.getPackageName();
-        Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(packageName);
-        String className = launchIntent.getComponent().getClassName();
-        try {
-            return Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     private void sendEvent(
         String eventName,
@@ -61,8 +50,7 @@ public class PlayerModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void startPlayerService() {
-        Intent serviceIntent = new Intent(getMainActivityClass(), NotificationService.class);
-        // serviceIntent.putExtra("MainActivityClass", getMainActivityClass());
+        Intent serviceIntent = new Intent(getReactApplicationContext(), NotificationService.class);
         serviceIntent.setAction("STARTFOREGROUND_ACTION");
         startService(serviceIntent);
     }
