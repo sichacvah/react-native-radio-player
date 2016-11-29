@@ -51,8 +51,8 @@ public class PlayerModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startPlayerService(String URL) {
         Intent serviceIntent = new Intent(getReactApplicationContext(), NotificationService.class);
-        
-        serviceIntent.setExtra("RADIO_PATH", URL);
+
+        serviceIntent.putExtra("RADIO_PATH", URL);
         serviceIntent.setAction("STARTFOREGROUND_ACTION");
         getReactApplicationContext().startService(serviceIntent);
     }
